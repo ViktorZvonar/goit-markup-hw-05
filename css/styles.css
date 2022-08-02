@@ -105,6 +105,7 @@ img {
   margin: 0;
   padding: 0;
 }
+
 .link-item {
   font-weight: 500;
   font-size: 14px;
@@ -116,6 +117,12 @@ img {
   display: block;
   padding-top: 32px;
   padding-bottom: 32px;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-name {
+  position: relative;
 }
 
 .link-name:not(:last-child) {
@@ -130,6 +137,19 @@ img {
 .link-item.current {
   color: var(--active-link-color);
 }
+
+.link-item.current::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--active-link-color);
+}
+
 .contact-list {
   display: flex;
   justify-content: center;
@@ -151,7 +171,9 @@ img {
   letter-spacing: 0.02em;
   color: var(--secondary-text-color);
   text-decoration: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .contact-item:hover,
 .contact-item:focus {
   color: var(--active-link-color);
@@ -213,12 +235,15 @@ img {
   cursor: pointer;
   border: transparent;
   border-radius: 4px;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-button:hover,
 .hero-button:focus {
   background-color: var(--active-link-hero-color);
 }
+
 .benefits {
   padding-top: 94px;
   margin: 0 auto;
@@ -343,6 +368,8 @@ img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .teem-soc-link:hover,
@@ -357,6 +384,7 @@ img {
 
 .teem-soc-icon {
   fill: #afb1b8;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients {
@@ -380,10 +408,12 @@ img {
   background: var(--primary-background-color);
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-icon {
   fill: #afb1b8;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-link:hover,
@@ -396,11 +426,49 @@ img {
   fill: var(--active-link-color);
 }
 
-/* Строрінка Портфоліо */
-
-.examples {
-  padding: 94px 0;
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
 }
+
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 581px;
+  width: 528px;
+
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  background-color: var(--primary-background-color);
+}
+
+.close-button-modal {
+  display: flex;
+  margin: 8px 8px 0 auto;
+  border: 1px solid #0000001a;
+  background-color: var(--primary-background-color);
+
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Строрінка Портфоліо */
 
 .filter-list {
   display: flex;
@@ -424,6 +492,9 @@ img {
 
   margin: 0 auto;
   padding: 6px 22px;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-button:hover,
@@ -431,6 +502,41 @@ img {
   color: var(--tertiary-text-color);
   background-color: var(--active-link-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.examples {
+  padding: 94px 0;
+}
+
+.thumb-example {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-example {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  padding: 63px 24px;
+
+  font-size: 18px;
+  line-height: calc(28 / 18);
+  letter-spacing: 0.03em;
+
+  color: var(--tertiary-text-color);
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+}
+
+.thumb-example:hover .about-example {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .example-div {
@@ -460,6 +566,7 @@ img {
 .example-demo-link {
   display: block;
   text-decoration: none;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .example-title {
@@ -555,6 +662,8 @@ img {
   height: 44px;
   border-radius: 50%;
   background-color: #ffffff1a;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-caller-link:hover,
